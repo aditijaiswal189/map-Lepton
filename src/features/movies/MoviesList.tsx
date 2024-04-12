@@ -1,5 +1,16 @@
+import { useMovies } from "../../hooks/useMovies";
+
 function MoviesList() {
-  return <div>MoviesList1 MoviesList2 MoviesList3 MoviesList4 MoviesList5</div>;
+  const [isLoading, movies] = useMovies();
+  if (isLoading) <p>Loading...</p>;
+
+  return (
+    <div>
+      {movies.map((movie) => (
+        <div key={movie.id}>{movie.movie}</div>
+      ))}
+    </div>
+  );
 }
 
 export default MoviesList;
