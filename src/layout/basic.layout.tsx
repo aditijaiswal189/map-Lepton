@@ -3,8 +3,9 @@ import { Outlet } from "react-router-dom";
 function BasicLayout() {
   return (
     <div>
-      <header>header here</header>
+      <header className="bg-primary">header here</header>
       <Outlet />
+      <footer>footer here</footer>
     </div>
   );
 }

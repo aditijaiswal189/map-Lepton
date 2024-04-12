@@ -11,10 +11,13 @@
 }
 
 html {
+  /* 1rem = 10px */
   font-size: 62.5%;
 }
 
 body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
   line-height: 1.5;

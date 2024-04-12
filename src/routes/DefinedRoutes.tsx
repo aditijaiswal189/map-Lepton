@@ -1,11 +1,13 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BasicLayout from "../layout/basic.layout";
 import { PATH } from "../constants/path";
+import Movies from "../pages/Movies";
 
 const router = createBrowserRouter([
   {
     path: PATH.HOME,
     element: <BasicLayout />,
+
     children: [
       {
         path: "",
@@ -14,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: PATH.DASHBOARD,
         element: <p> Dashboard here</p>,
+      },
+      {
+        path: PATH.MOVIES,
+        element:<Movies/>,
       },
 
       {

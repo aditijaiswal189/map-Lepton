@@ -1,10 +1,12 @@
 :root {
   &,
   &.light-mode {
-    --color-grey-500: #6b7280;
+    --primary-color: #f1f5f9;
+    --secondary-color: #0f172a;
   }
 
   &.dark-mode {
-    --color-grey-500: green;
+    --primary-color: #0f172a;
+    --secondary-color: #f1f5f9;
   }
 }
