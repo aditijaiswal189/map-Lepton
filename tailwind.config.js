@@ -8,6 +8,9 @@ export default {
         secondary: "var(--secondary-color)",
         tertiary: "",
       },
+      boxShadow: {
+        cardShadow: "var(--shadow-md)",
+      },
     },
   },
   plugins: [],
