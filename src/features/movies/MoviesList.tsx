@@ -1,13 +1,14 @@
 import { useMovies } from "../../hooks/useMovies";
+import MovieItem from "./MovieItem";
 
-function MoviesList() {
+function MoviesList(): JSX.Element {
   const [isLoading, movies] = useMovies();
   if (isLoading) <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="flex flex-wrap">
       {movies.map((movie) => (
-        <div key={movie.id}>{movie.movie}</div>
+        <MovieItem key={movie.id} movieData={movie} />
       ))}
     </div>
   );
