@@ -3,6 +3,7 @@ import BasicLayout from "../layout/basic.layout";
 import { PATH } from "../constants/path";
 import Movies from "../pages/Movies";
 import Login from "../features/login/Login";
+import Map from "../features/map/Map";
 // import Movie from "../features/movies/MovieItem";
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: PATH.MOVIES,
         element: <Movies />,
+      },
+      {
+        path: PATH.MAP,
+        element: <Map />,
       },
       // {
       //   path: PATH.MOVIES + "/:id",
