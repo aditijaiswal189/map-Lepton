@@ -4,22 +4,23 @@ import {
   NavigationControl,
   useControl,
 } from "react-map-gl";
-import { GeoJsonLayer } from "deck.gl";
+import { GeoJsonLayer, IconLayer, ScatterplotLayer } from "deck.gl";
 import { MapboxOverlay as DeckOverlay } from "@deck.gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { PUBLICTOKENMAP } from "../../constants/api.constants";
 
 import { locality } from "../../data/locality.ts";
-import { useState } from "react";
+import { airports } from "../../data/airport.ts";import { useState } from "react";
 import { BeakerIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 type PropertiesType = {
   name: string;
   color: string;
 };
+
 // source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
 const LOCALITY = locality;
-
+const AIRPORTS = airports;
 // Set your Mapbox token here or via environment variable
 const MAPBOX_TOKEN = PUBLICTOKENMAP;
 
@@ -67,6 +68,23 @@ function MyMap() {
       pickable: true,
       autoHighlight: true,
       onClick,
+    }),
+    new IconLayer<PropertiesType>({
+      id: "IconLayer",
+      data: AIRPORTS,
+      filled: true,
+      getFillColor: [70, 0, 20, 80],
+      getLineWidth: 20,
+      getPointRadius: 4,
+      getTextSize: 12,
+
+      autoHighlight: true,
+      getSize: 40,
+      iconAtlas:
+        "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png",
+      iconMapping:
+        "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.json",
+      pickable: true,
     }),
   ];
 
