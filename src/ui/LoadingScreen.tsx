@@ -1,5 +1,5 @@
 function LoadingScreen() {
-  return <div class="loading">Loading...</div>;
+  return <div className="loading">Loading...</div>;
 }
 
 export default LoadingScreen;

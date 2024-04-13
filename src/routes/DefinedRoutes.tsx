@@ -5,7 +5,7 @@ import Movies from "../pages/Movies";
 import Login from "../features/login/Login";
 
 import MyMap from "../features/map/Map";
-// import Movie from "../features/movies/MovieItem";
+import Airport from "../features/map/Airport";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +29,10 @@ const router = createBrowserRouter([
         path: PATH.MAP,
         element: <MyMap />,
       },
-      // {
-      //   path: PATH.MOVIES + "/:id",
-      //   element: <Movie />,
-      // },
+      {
+        path: PATH.AIRPORT,
+        element: <Airport />,
+      },
       {
         path: "child",
         element: <p>child here</p>,
