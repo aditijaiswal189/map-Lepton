@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BasicLayout from "../layout/basic.layout";
 import { PATH } from "../constants/path";
 import Movies from "../pages/Movies";
+import Login from "../features/login/Login";
 // import Movie from "../features/movies/MovieItem";
 
 const router = createBrowserRouter([
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path: PATH.LOGIN,
-    element: <p>I am login here</p>,
+    element: <Login />,
   },
 ]);
 function DefinedRoutes() {

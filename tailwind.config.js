@@ -6,7 +6,7 @@ export default {
       colors: {
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",
-        tertiary: "",
+        tertiary: "var(--tertiary-color)",
       },
       boxShadow: {
         cardShadow: "var(--shadow-md)",

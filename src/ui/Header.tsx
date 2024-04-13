@@ -8,7 +8,7 @@ function Header() {
     setThemeIcon(!themeIcon);
   }
   return (
-    <div className="flex justify-between bg-primary p-4">
+    <div className="flex justify-between bg-primary p-4 border-solid border-b-[1px] border-secondary ">
       <div className="flex gap-5">
         <div>
           <button

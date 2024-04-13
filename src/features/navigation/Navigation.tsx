@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Navigation() {
-  const [listOpen, setListOpen] = useState(false);
+  const [listOpen, setListOpen] = useState(true);
   function handleHamburger() {
     setListOpen(!listOpen);
   }
