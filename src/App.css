@@ -18,3 +18,8 @@
     --shadow-lg: 0 2.4rem 3.2rem rgba(255, 255, 255, 0.4);
   }
 }
+
+.deck-tooltip {
+  font-size: 0.8em;
+  font-family: Helvetica, Arial, sans-serif;
+}
