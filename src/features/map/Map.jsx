@@ -9,8 +9,8 @@ import { MapboxOverlay as DeckOverlay } from "@deck.gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { AEROPLANE, PUBLICTOKENMAP } from "../../constants/api.constants";
 
-import { locality } from "../../data/locality.ts";
-import { airports } from "../../data/airport.ts";
+import { locality } from "../../data/locality.js";
+import { airports } from "../../data/airport.js";
 import { useState } from "react";
 import {
   Bars3Icon,
@@ -22,7 +22,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 
-import DisplayInfo from "../../ui/DisplayInfo.tsx";
+import DisplayInfo from "../../ui/DisplayInfo.jsx";
 
 // source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
 const LOCALITY = locality;
@@ -46,10 +46,10 @@ function DeckGLOverlay(props) {
 }
 
 function MyMap() {
-  const [gurgaonShow, setGurgaonShow] = useState<boolean>(false);
-  const [airportShow, setAirportShow] = useState<boolean>(false);
-  const [layerFolderOpen, setLayerFolderOpen] = useState<boolean>(false);
-  const [isDisplayModal, setIsDisplayModal] = useState<object>({});
+  const [gurgaonShow, setGurgaonShow] = useState(false);
+  const [airportShow, setAirportShow] = useState(false);
+  const [layerFolderOpen, setLayerFolderOpen] = useState(false);
+  const [isDisplayModal, setIsDisplayModal] = useState({});
 
   function handleGurgaon() {
     setGurgaonShow(!gurgaonShow);

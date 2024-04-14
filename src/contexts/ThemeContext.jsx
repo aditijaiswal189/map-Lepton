@@ -1,9 +1,10 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext();
 
 function Theme({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   useEffect(
     function () {
       if (isDarkMode) {
