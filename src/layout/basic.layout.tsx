@@ -6,7 +6,7 @@ function BasicLayout() {
     <div>
       <Header />
       <Outlet />
-      <footer>footer here</footer>
+      
     </div>
   );
 }
