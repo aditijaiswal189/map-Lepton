@@ -9,6 +9,7 @@ export default {
         secondary: "var(--secondary-color)",
         secondary2: "var(--secondary-color2)",
         tertiary: "var(--tertiary-color)",
+        backdrop: "var(--backdrop-filter-color)",
       },
       boxShadow: {
         cardShadow: "var(--shadow-md)",
