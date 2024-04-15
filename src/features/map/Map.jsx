@@ -1,49 +1,24 @@
-import {
-  GeolocateControl,
-  Map,
-  NavigationControl,
-  useControl,
-} from "react-map-gl";
+import { GeolocateControl, Map, NavigationControl } from "react-map-gl";
 import { GeoJsonLayer, IconLayer } from "deck.gl";
-import { MapboxOverlay as DeckOverlay } from "@deck.gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { AEROPLANE, PUBLICTOKENMAP } from "../../constants/api.constants";
-
 import { locality } from "../../data/locality.js";
 import { airports } from "../../data/airport.js";
 import { useState } from "react";
-import {
-  Bars3Icon,
-  BuildingOffice2Icon,
-  EyeIcon,
-  EyeSlashIcon,
-  FolderOpenIcon,
-  PaperAirplaneIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
-
 import DisplayInfo from "../../ui/DisplayInfo.jsx";
+import {
+  INITIAL_VIEW_STATE,
+  MAP_STYLE,
+} from "../../constants/map.constants.js";
+import DeckGLOverlay from "./DeckGLOverlay.jsx";
+import LayerButton from "./LayerButton.jsx";
+import LayerHeader from "./LayerHeader.jsx";
 
 // source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
 const LOCALITY = locality;
 const AIRPORTS = airports;
 // Set your Mapbox token here or via environment variable
 const MAPBOX_TOKEN = PUBLICTOKENMAP;
-
-const INITIAL_VIEW_STATE = {
-  latitude: 28.4595,
-  longitude: 77.0266,
-  zoom: 10,
-  bearing: 0,
-  pitch: 30,
-};
-
-const MAP_STYLE = "mapbox://styles/mapbox/streets-v11";
-function DeckGLOverlay(props) {
-  const overlay = useControl(() => new DeckOverlay(props));
-  overlay.setProps(props);
-  return null;
-}
 
 function MyMap() {
   const [gurgaonShow, setGurgaonShow] = useState(false);
@@ -65,6 +40,7 @@ function MyMap() {
     setIsDisplayModal({});
   }
   const onClick = (info) => {
+    console.log(info.object);
     if (info.object) {
       // eslint-disable-next-line
       setIsDisplayModal(info.object);
@@ -98,7 +74,6 @@ function MyMap() {
     pickable: true,
     onClick,
   });
-
   return (
     <div className="h-screen relative">
       <Map
@@ -106,78 +81,19 @@ function MyMap() {
         mapStyle={MAP_STYLE}
         mapboxAccessToken={MAPBOX_TOKEN}
       >
-        <div className="absolute top-2 left-2 z-50 bg-primary bg-opacity-80 p-4 justify-between rounded-xl w-[50%]  md:w-[40%]  lg:w-[30%] xl:w-[20%] 2xl:w-[15%]">
-          <div
-            className={`py-2 flex justify-between ${
-              layerFolderOpen
-                ? "border-solid border-secondary border-b-[1px]"
-                : ""
-            }  `}
-          >
-            <div className="flex justify-between gap-2  ">
-              <span>
-                <FolderOpenIcon className="h-8 w-8" />
-              </span>
-              Layers
-            </div>
-            <button className="items-end" onClick={handleLayerFolderOpen}>
-              {layerFolderOpen ? (
-                <XMarkIcon className="h-8 w-8" />
-              ) : (
-                <Bars3Icon className="h-8 w-8" />
-              )}
-            </button>
-          </div>
+        <LayerHeader
+          handleLayerFolderOpen={handleLayerFolderOpen}
+          layerFolderOpen={layerFolderOpen}
+        >
           {layerFolderOpen && (
-            <>
-              <button
-                className="py-3 mt-5 w-[100%]
-           hover:bg-primary2 focus:outline-none  font-medium rounded-lg text-lg pl-5 pr-2  dark:bg-primary2 dark:hover:bg-primary2 dark:focus:ring-primary2 dark:border-primary2 transition-all hover:rounded-xl"
-                onClick={handleGurgaon}
-              >
-                <div className="flex justify-between w-[100%]  ">
-                  <div className="flex gap-2">
-                    -
-                    <span>
-                      <BuildingOffice2Icon className="h-8 w-8" />
-                    </span>
-                    Gurgaon
-                  </div>
-                  <div>
-                    {gurgaonShow ? (
-                      <EyeIcon className="h-8 w-8" />
-                    ) : (
-                      <EyeSlashIcon className="h-8 w-8" />
-                    )}
-                  </div>
-                </div>
-              </button>
-              <button
-                className="flex py-3  w-[100%]
-           hover:bg-primary2 focus:outline-none  font-medium rounded-lg text-lg pl-5 pr-2  dark:bg-primary2 dark:hover:bg-primary2 dark:focus:ring-primary2 dark:border-primary2 transition-all"
-                onClick={handleAirport}
-              >
-                <div className="flex justify-between  w-[100%]">
-                  <div className="flex gap-2">
-                    -
-                    <span>
-                      <PaperAirplaneIcon className="h-8 w-8" />
-                    </span>
-                    Airports
-                  </div>
-                </div>
-                <div>
-                  {airportShow ? (
-                    <EyeIcon className="h-8 w-8" />
-                  ) : (
-                    <EyeSlashIcon className="h-8 w-8" />
-                  )}
-                </div>
-              </button>
-            </>
+            <LayerButton
+              gurgaonShow={gurgaonShow}
+              handleGurgaon={handleGurgaon}
+              airportShow={airportShow}
+              handleAirport={handleAirport}
+            />
           )}
-        </div>
-
+        </LayerHeader>
         {gurgaonShow && <DeckGLOverlay controller={true} layers={layer1} />}
         {airportShow && <DeckGLOverlay controller={true} layers={layer2} />}
         <NavigationControl position="top-right" />
@@ -195,5 +111,4 @@ function MyMap() {
     </div>
   );
 }
-
 export default MyMap;
