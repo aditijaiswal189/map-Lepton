@@ -26,27 +26,22 @@ function MyMap() {
   const [layerFolderOpen, setLayerFolderOpen] = useState(false);
   const [isDisplayModal, setIsDisplayModal] = useState({});
 
-  function handleGurgaon() {
+  const handleGurgaon = () => {
     setGurgaonShow(!gurgaonShow);
-  }
-  function handleAirport() {
+  };
+  const handleAirport = () => {
     setAirportShow(!airportShow);
-  }
-  function handleLayerFolderOpen() {
+  };
+  const handleLayerFolderOpen = () => {
     setLayerFolderOpen(!layerFolderOpen);
-  }
-
-  function handleCloseDisplayModal() {
+  };
+  const handleCloseDisplayModal = () => {
     setIsDisplayModal({});
-  }
-  const onClick = (info) => {
-    console.log(info.object);
-    if (info.object) {
-      // eslint-disable-next-line
-      setIsDisplayModal(info.object);
-    }
   };
 
+  const onClick = (info) => {
+    if (info.object) setIsDisplayModal(info.object);
+  };
   const layer1 = new GeoJsonLayer({
     id: "localities",
     data: LOCALITY,
@@ -62,7 +57,6 @@ function MyMap() {
   const layer2 = new IconLayer({
     id: "IconLayer",
     data: AIRPORTS.features,
-
     getColor: () => [220, 180, 0],
     getIcon: () => ({
       url: AEROPLANE,
